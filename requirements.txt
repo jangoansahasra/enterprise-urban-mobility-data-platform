@@ -1,0 +1,15 @@
+pandas
+numpy
+sqlalchemy
+psycopg2-binary
+python-dotenv
+
+fastapi
+uvicorn
+
+scikit-learn
+xgboost
+
+faker
+
+pytest
