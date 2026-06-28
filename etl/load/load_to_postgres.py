@@ -1,4 +1,5 @@
 import os
+from io import StringIO
 from pathlib import Path
 
 import pandas as pd
@@ -106,19 +107,43 @@ def prepare_fact_trips() -> pd.DataFrame:
 
 
 def load_fact_trips(engine, chunk_size: int = 100_000) -> None:
-    """Load fact trip records into PostgreSQL in chunks."""
+    """Load fact trip records into PostgreSQL using COPY for faster bulk inserts."""
     fact_df = prepare_fact_trips()
 
     print(f"Loading {len(fact_df):,} rows into fact_trips...")
 
-    fact_df.to_sql(
-        "fact_trips",
-        engine,
-        if_exists="append",
-        index=False,
-        chunksize=chunk_size,
-        method="multi",
-    )
+    columns = list(fact_df.columns)
+    column_list = ", ".join(columns)
+
+    raw_connection = engine.raw_connection()
+
+    try:
+        with raw_connection.cursor() as cursor:
+            for start in range(0, len(fact_df), chunk_size):
+                end = start + chunk_size
+                chunk = fact_df.iloc[start:end]
+
+                buffer = StringIO()
+                chunk.to_csv(buffer, index=False, header=False, na_rep="\\N")
+                buffer.seek(0)
+
+                copy_sql = f"""
+                    COPY fact_trips ({column_list})
+                    FROM STDIN
+                    WITH (FORMAT CSV, NULL '\\N')
+                """
+
+                cursor.copy_expert(copy_sql, buffer)
+                raw_connection.commit()
+
+                print(f"Loaded rows {start + 1:,} to {min(end, len(fact_df)):,}")
+
+    except Exception:
+        raw_connection.rollback()
+        raise
+
+    finally:
+        raw_connection.close()
 
     print("Loaded fact_trips successfully.")
 

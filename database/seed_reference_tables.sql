@@ -8,6 +8,7 @@ ON CONFLICT (vendor_id) DO NOTHING;
 
 INSERT INTO dim_payment_type (payment_type_id, payment_type_name)
 VALUES
+    (0, 'Unknown / missing'),
     (1, 'Credit card'),
     (2, 'Cash'),
     (3, 'No charge'),
