@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: urban_mobility_postgres
+    environment:
+      POSTGRES_USER: urban_user
+      POSTGRES_PASSWORD: urban_password
+      POSTGRES_DB: urban_mobility_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
