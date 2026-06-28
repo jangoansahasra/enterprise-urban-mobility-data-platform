@@ -1,16 +1,29 @@
+# Python
 venv/
 .env
 __pycache__/
 *.pyc
 
-.ipynb_checkpoints
+# Jupyter
+.ipynb_checkpoints/
 
+# macOS
 .DS_Store
 
-data/raw/*.csv
-data/processed/*.csv
-data/validation_reports/*.csv
-data/processed/*.parquet
+# Logs
 logs/
 *.log
+
+# Generated validation reports
+data/validation_reports/*.csv
+
+# Generated processed data
+data/processed/*.csv
+data/processed/*.parquet
+
+# Local R history
 .Rapp.history
+
+# Generated ML model artifacts
+ml/models/*.joblib
+ml/models/*.pkl
