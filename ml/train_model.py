@@ -1,4 +1,5 @@
 import os
+import json
 from pathlib import Path
 
 import joblib
@@ -17,6 +18,8 @@ from sqlalchemy import create_engine
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 MODEL_DIR = PROJECT_ROOT / "ml" / "models"
 MODEL_PATH = MODEL_DIR / "trip_duration_model.joblib"
+METRICS_PATH = MODEL_DIR / "trip_duration_metrics.json"
+FEATURE_IMPORTANCE_PATH = MODEL_DIR / "trip_duration_feature_importance.csv"
 
 SAMPLE_SIZE = 250_000
 RANDOM_STATE = 42
@@ -148,6 +151,35 @@ def main() -> None:
     print(f"RMSE: {rmse:.2f} minutes")
     print(f"R2:   {r2:.4f}")
 
+    metrics = {
+        "model": "RandomForestRegressor",
+        "training_rows": int(len(df)),
+        "test_size": 0.2,
+        "target": target,
+        "mae_minutes": round(float(mae), 2),
+        "rmse_minutes": round(float(rmse), 2),
+        "r2": round(float(r2), 4),
+        "features": list(X.columns),
+    }
+
+    with open(METRICS_PATH, "w", encoding="utf-8") as file:
+        json.dump(metrics, file, indent=4)
+
+    print(f"Metrics saved to: {METRICS_PATH}")
+    
+    preprocessor = model.named_steps["preprocessor"]
+    trained_model = model.named_steps["model"]
+
+    feature_names = preprocessor.get_feature_names_out()
+    feature_importance_df = pd.DataFrame(
+        {
+            "feature": feature_names,
+            "importance": trained_model.feature_importances_,
+        }
+    ).sort_values(by="importance", ascending=False)
+
+    feature_importance_df.to_csv(FEATURE_IMPORTANCE_PATH, index=False)
+    print(f"Feature importance saved to: {FEATURE_IMPORTANCE_PATH}")
     joblib.dump(model, MODEL_PATH)
     print(f"\nModel saved to: {MODEL_PATH}")
 

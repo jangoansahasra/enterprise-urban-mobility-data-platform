@@ -1,0 +1,22 @@
+{
+    "model": "RandomForestRegressor",
+    "training_rows": 250000,
+    "test_size": 0.2,
+    "target": "trip_duration_minutes",
+    "mae_minutes": 1.35,
+    "rmse_minutes": 3.4,
+    "r2": 0.9129,
+    "features": [
+        "pickup_hour",
+        "pickup_day_of_week",
+        "pickup_month",
+        "is_weekend",
+        "passenger_count",
+        "trip_distance",
+        "fare_amount",
+        "total_amount",
+        "pickup_borough",
+        "dropoff_borough",
+        "payment_type_id"
+    ]
+}
