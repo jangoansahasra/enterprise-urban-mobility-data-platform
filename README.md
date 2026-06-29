@@ -283,6 +283,7 @@ Planned enhancements:
 - model comparison with Linear Regression, Random Forest, and XGBoost
 - model monitoring and drift tracking
 - deployment-ready API containerization
+- add confidence intervals and prediction intervals for selected analytics and ML outputs
 
 ## Summary
 

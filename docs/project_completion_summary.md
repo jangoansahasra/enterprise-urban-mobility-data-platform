@@ -341,9 +341,11 @@ Completed:
 
 Remaining future work:
 
-- build Power BI dashboard on Windows
+- build Power BI dashboard
 - add dashboard screenshots to README
 - optionally add Airflow orchestration
 - optionally add dbt models
 - optionally add weather or holiday enrichment
 - optionally add model monitoring and deployment improvements
+- add confidence intervals for aggregate analytics such as average fare, average duration, and revenue trends
+- add prediction intervals for trip duration predictions to show uncertainty around model outputs

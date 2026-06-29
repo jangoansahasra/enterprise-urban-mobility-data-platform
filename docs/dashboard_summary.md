@@ -255,3 +255,5 @@ Potential future improvements:
 - add weather or holiday filters
 - add drill-through pages for zone-level analysis
 - add model prediction error visuals
+- add confidence intervals for aggregate analytics such as average fare, average duration, and revenue trends
+- add prediction intervals for trip duration predictions to show uncertainty around model outputs

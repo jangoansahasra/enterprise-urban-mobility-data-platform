@@ -251,9 +251,11 @@ Example response:
 
 Potential improvements include:
 
-- expose the pre-trip model through FastAPI
 - compare Linear Regression, Random Forest, and XGBoost
 - tune hyperparameters for both model versions
 - train on a larger sample or full dataset
 - add model monitoring for prediction drift
 - add Power BI visuals for model metrics and feature importance
+- add confidence intervals for aggregate analytics such as average fare, average duration, and revenue trends
+- add prediction intervals for trip duration predictions to show uncertainty around model outputs
+- add model versioning and experiment tracking
