@@ -4,16 +4,44 @@ An end-to-end data engineering and analytics platform built with NYC Yellow Taxi
 
 This project simulates a real urban mobility data platform for a transportation agency. It ingests raw taxi trip records, profiles and validates data quality, transforms records into analytics-ready datasets, loads cleaned data into PostgreSQL, creates SQL analytics views, exposes insights through FastAPI endpoints, and trains machine learning models for trip duration prediction.
 
+## Business Problem
+
+City transportation agencies receive millions of taxi trip records every month, but raw operational data is not immediately useful for analytics or decision-making.
+
+Analysts and mobility planners need trusted, queryable data to answer questions such as:
+
+- which pickup and dropoff zones have the highest demand
+- which boroughs generate the most revenue
+- how demand changes by hour, weekday, and month
+- which zones and borough pairs drive the most trip activity
+- how payment type, distance, fare, and location relate to trip behavior
+- whether machine learning can estimate trip duration from trip features
+
+This project addresses that problem by building a data platform that converts raw NYC taxi records into validated, cleaned, analytics-ready, API-accessible, and ML-ready datasets.
+
 ## Project Goals
 
-This project demonstrates practical skills for:
+The goal of this project is to build a realistic urban mobility data platform that supports:
 
-- Data engineering
-- Analytics engineering
-- Backend API development
+- raw data ingestion from NYC TLC trip records
+- automated data profiling and validation
+- cleaning and transformation of large-scale taxi trip data
+- PostgreSQL data warehouse modeling with fact and dimension tables
+- SQL analytics views for reporting and BI use cases
+- FastAPI endpoints for analytics and prediction access
+- machine learning workflows for trip duration prediction
+- Power BI dashboard preparation
+
+## Skills Demonstrated
+
+This project demonstrates practical skills in:
+
+- data engineering
+- analytics engineering
+- backend API development
 - SQL analytics
-- Data quality validation
-- Machine learning workflow development
+- data quality validation
+- machine learning workflow development
 - BI/dashboard preparation
 
 ## Tech Stack
