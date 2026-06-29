@@ -460,6 +460,23 @@ Run all tests:
 python -m pytest
 ```
 
+Current test coverage includes:
+
+- column standardization
+- invalid trip filtering
+- derived time features
+- fare and tip calculations
+- taxi zone enrichment
+- FastAPI route registration
+- prediction request schema validation
+
+Additional testing details are documented in:
+
+```text
+docs/testing.md
+```
+
+
 ## Future Improvements
 
 Planned enhancements:
