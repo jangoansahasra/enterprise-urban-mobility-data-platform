@@ -1,0 +1,26 @@
+{
+    "model": "RandomForestRegressor",
+    "model_type": "pre_trip_duration_prediction",
+    "training_rows": 250000,
+    "test_size": 0.2,
+    "target": "trip_duration_minutes",
+    "mae_minutes": 3.18,
+    "rmse_minutes": 5.13,
+    "r2": 0.8094,
+    "features": [
+        "pickup_hour",
+        "pickup_day_of_week",
+        "pickup_month",
+        "is_weekend",
+        "passenger_count",
+        "trip_distance",
+        "pickup_borough",
+        "dropoff_borough",
+        "payment_type_id"
+    ],
+    "excluded_post_trip_features": [
+        "fare_amount",
+        "total_amount",
+        "tip_amount"
+    ]
+}
